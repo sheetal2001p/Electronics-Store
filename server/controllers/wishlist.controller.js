@@ -33,7 +33,7 @@ const deletewishitem = async(req,res)=>{
     console.log(_id)
     try{
       const product = await Wishlist.findByIdAndDelete({_id});
-      console.log(product)
+    //   console.log(product)
       if(!product){
         return res.json("product doesn't exist in wishlist");
       }                                                                                                                                                          

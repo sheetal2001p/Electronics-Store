@@ -12,8 +12,8 @@ export default function Mywishlist() {
 
     useEffect(() => {
         getWishlist();
-        if(!localStorage.getItem("isLoggedIn")){
-            history.push("/login");
+        if(!JSON.parse(localStorage.getItem("isLoggedIn"))){
+            history.push("/");
 
         }
         else if (localStorage.getItem("userType")==="admin"){
@@ -28,7 +28,6 @@ export default function Mywishlist() {
         try {
             const res = await axios.get("http://localhost:4000/mywishlist", { headers: { "Authorization": `Bearer ${token}` } });
             setMywishlist(res.data);
-            console.log(res.data);
         }
         catch (e) {
             console.log("Error:", e);

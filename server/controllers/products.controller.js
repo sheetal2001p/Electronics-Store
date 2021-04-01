@@ -1,8 +1,7 @@
 const Product = require("../models/products.model");
 
 const addproducts = async (req, res) => {
-    console.log("vmc")
-    console.log("RequestS??",req.body);
+    // console.log("RequestS??",req.body);
     const{name,price,model,qty,type} = req.body;
     try{
         const isExist = await Product.findOne({name});

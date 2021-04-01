@@ -3,10 +3,14 @@ import tv from "../images/TV.jpg"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import { Spinner } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Userproducts() {
     const [products, setProducts] = useState([]);
+    const [loader, setLoader] = useState(false);
+
 
     useEffect(() => {
         fetchProducts();
@@ -21,43 +25,28 @@ export default function Userproducts() {
         }
     }
 
-    
-const placeOrder = async(_id)=>{
-    
-    try {
-        const productId = _id;
-        const token = localStorage.getItem("token");
-        const res = await axios.post(`http://localhost:4000/placeorder?product=${productId}`,{},{headers:{"Authorization":`Bearer ${token}`}});
-        // console.log(res);
-        if (res.error) {
-            // setLoader(false)
-            toast.error('🦄 Error! try again', {
-                position: "top-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+
+    const placeOrder = async (_id) => {
+
+        try {
+            const productId = _id;
+            const token = localStorage.getItem("token");
+            setLoader(true);
+            const res = await axios.post(`http://localhost:4000/placeorder?product=${productId}`, {}, { headers: { "Authorization": `Bearer ${token}` } });
+            // console.log(res);
+            if (res.error) {
+                setLoader(false)
+                toast.error('Error! try again');
+            }
+            else {
+                setLoader(false)
+                toast.info('Ordered Successfully! See Myorders');
+            }
         }
-        else {
-            // setLoader(false)
-            toast.info('Ordered Successfully! See Myorders', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+        catch (e) {
+            console.log("Error:", e);
         }
     }
-    catch (e) {
-        console.log("Error:", e);
-    }
-} 
 
 
     const addtoWishlist = async (_id) => {
@@ -116,7 +105,14 @@ const placeOrder = async(_id)=>{
                                                 <p>{product.name},{product.model}</p>
                                             </div>
                                             <div>
-                                                <button className="card-btns" onClick={() => placeOrder(product._id)}>Order Now</button>
+                                                <button className="card-btns" onClick={() => placeOrder(product._id)}>Order Now
+                                                {(loader ? (<Spinner
+                                                        as="span"
+                                                        animation="border"
+                                                        size="sm"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    />) : null)}</button>
                                                 <button className="addtowishlist card-btns" onClick={() => addtoWishlist(product._id)}>Add to wishlist</button>
                                             </div>
                                         </div>

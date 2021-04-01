@@ -18,7 +18,7 @@ function Login() {
         const name = e.target.name;
         const value = e.target.value;
         setFormData({ ...formData, [name]: value });
-        console.log(formData)
+        // console.log(formData)
     }
     const getPage = async (req, res) => {
         try {
@@ -34,15 +34,7 @@ function Login() {
             }
             else {
                 setLoader(false)
-                toast.success('🦄 Login Successfully!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                toast.success('🦄 Login Successfully!');
                 localStorage.setItem("isLoggedIn", true);
             }
 

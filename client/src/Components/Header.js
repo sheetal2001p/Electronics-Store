@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import slogo from "../images/S-logo.png"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom"
+import { toast } from "react-toastify"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
  function Header() {
   const history = useHistory();
 
   const logout = () => {
-    console.log("I am calling")
     localStorage.setItem("isLoggedIn", false);
     history.push("/");
+    toast.success('Logout Successfully!');
   }
 
   return (

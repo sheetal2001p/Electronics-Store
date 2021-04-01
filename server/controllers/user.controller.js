@@ -29,9 +29,9 @@ const findByCredentials = async(email,password) =>{
 }
 //Sign Up ApI for user and admin
 const signup =async (req, res , next) => {
-    console.log("RequestS??",req.body);
+    // console.log("RequestS??",req.body);
     const{firstName,lastName,email,password,address} = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     try{
         const isExist = await User.findOne({email});
         // console.log(isExist);

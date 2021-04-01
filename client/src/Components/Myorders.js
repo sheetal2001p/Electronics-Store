@@ -10,8 +10,8 @@ function Myorders() {
 
     useEffect(() => {
         getmyOrders();
-        if(!localStorage.getItem("isLoggedIn")){
-            history.push("/login");
+        if(!JSON.parse(localStorage.getItem("isLoggedIn"))){
+            history.push("/");
 
         }
         else if (localStorage.getItem("userType")==="admin"){

@@ -16,15 +16,7 @@ function Product() {
             const res = await axios.get("http://localhost:4000/getProducts");
             setProducts(res.data);
              // setLoader(false)
-             toast.info('Products fetched Successfully!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            
         }
         catch (e) {
             console.log("Error:", e);

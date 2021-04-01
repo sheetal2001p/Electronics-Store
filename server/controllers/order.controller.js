@@ -29,7 +29,7 @@ const myOrders = async (req, res) => {
 const getallOrders = async(req,res)=> {
     try {
         const orders = await Order.find().populate("product").populate("owner");
-        console.log(orders)
+        // console.log(orders)
         res.status(200).json(orders);
     }
     catch (err) {
