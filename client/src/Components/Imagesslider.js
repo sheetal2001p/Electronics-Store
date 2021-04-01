@@ -11,11 +11,11 @@ function Imagesslider() {
 
         <div className="main-slider">
 
-                <img src={img1} id="img1" />
-                <img src={img2} id="img2" />
-                 <img src={img3} id="img3"/>
-                 <img src={img4} id="img4" />
-                 <img src={img5} id="img5" />
+                <img src={img1} id="img1" alt="" />
+                <img src={img2} id="img2"  alt=""/>
+                 <img src={img3} id="img3" alt=""/>
+                 <img src={img4} id="img4" alt="" />
+                 <img src={img5} id="img5" alt="" />
        </div>
        {/* <hr/> */}
         </div>
