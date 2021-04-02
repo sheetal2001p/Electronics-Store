@@ -170,16 +170,13 @@
          border-radius: 6px;
      }
      .card-btns:hover{
-       background-color: rgb(236, 253, 196);
-       color: rgb(85, 75, 75);
+       background-color: rgb(215, 238, 247);
+       color: rgb(105, 71, 226);
      }
      .addtowishlist{
          background-color: rgb(46, 9, 63);
      }
-     .addtowishlist:hover{
-         color:burlywood;
-         text-decoration: none;
-     }
+
      #product-description{
         margin:10px 30px;
         text-align: center;
@@ -370,7 +367,7 @@
 .orders-table{
     width: 90%;
     margin: 30px auto;
-    background-color: rgb(48, 32, 77);
+    background-color: rgb(32, 48, 77);
 }
 .orders-table th,tr{
     font-size: 20px;
@@ -480,20 +477,32 @@ tr:hover {
 
 }
 .myorders{
-    width: 70%;
-    margin: auto;
+    background-color: rgb(52,161,152);
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px;
 }
 .order-container{
-    background-color: rgb(253, 241, 228);
+    width: 70%;
+    background-color: #161616;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 40px;
+    margin: 40px auto;
     padding: 40px;
     box-shadow: 1px 1px 10px gray;
-    color: rgb(37, 29, 54);
+    color: rgb(253, 253, 255);
 }
 .order-container img{
     width: 130px;
     height: 80px;
+}
+#return-order{
+    background-color: rgb(241, 234, 234);
+    color: rgb(32, 19, 19);
+}
+#return-order:hover{
+    background-color: rgb(170, 201, 247);
+    color: rgb(17, 17, 17);
+    box-shadow: 1px 2px 7px white;
 }

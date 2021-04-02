@@ -20,6 +20,9 @@ const productSchema = new Schema({
     },
     type:{
       type:String
+    },
+    productURL:{
+      type:String
     }
 },{timestamps:true});
 

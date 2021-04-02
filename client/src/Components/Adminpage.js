@@ -29,8 +29,6 @@ function Adminpage() {
     }
 
     const deleteItem = async (_id) => {
-        console.log(_id)
-
         try {
             const res = await axios.delete(`http://localhost:4000/deleteOrder/${_id}`);
             fetchOrders();

@@ -30,6 +30,15 @@ function Myorders() {
             console.log("Error:", e);
         }
     }
+    const deleteItem = async (_id) => {
+        try {
+            const res = await axios.delete(`http://localhost:4000/deleteOrder/${_id}`);
+            getmyOrders();        }
+        catch (e) {
+            console.log("Error:", e);
+        }
+
+    }
 
     return (
         <div>
@@ -49,7 +58,10 @@ function Myorders() {
                                 <img src={tv} />
                                 <div>
                                     <p>{order.product.name}</p>
-                                    <p>Delivered</p>
+                                    <p>{order.createdAt}</p>
+                                </div>
+                                <div>
+                                    <button id="return-order" className="btn" onClick={()=>deleteItem(order._id)}>Return order</button>
                                 </div>
                             </div>
                         )

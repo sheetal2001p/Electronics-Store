@@ -48,7 +48,7 @@ function Product() {
                                                 <p>{product.name},{product.model}</p>
                                             </div>
                                             <div>
-                                                <Link className="card-btns" to="/signup">Order Now</Link>
+                                                <Link className="card-btns" to="/signup" style={{ textDecoration: 'none' }}>Order Now</Link>
                                                 <Link className="addtowishlist card-btns" to="/signup" style={{ textDecoration: 'none' }}>Add to wishlist</Link>
                                             </div>
                                         </div>
