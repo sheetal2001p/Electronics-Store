@@ -66,7 +66,7 @@ function Login() {
     }
 
     return (
-        <div className="login-signup-body">
+        <div className="login-body">
             <div className="login-signup-page">
 
                 <form method="post">
@@ -74,7 +74,7 @@ function Login() {
 
                     <input type="email" name="email" placeholder="Email" onChange={changeFormData} />
                     <input type="password" name="password" placeholder="password" onChange={changeFormData} />
-                    <Link id="login-signup-btn" onClick={getPage} to="/login">Login
+                    <Link id="login-signup-btn" onClick={getPage} to="/login" style={{ textDecoration: 'none' }}>Login
                     {(loader ? (<Spinner
                             as="span"
                             animation="border"
@@ -82,7 +82,7 @@ function Login() {
                             role="status"
                             aria-hidden="true"
                         />) : null)}</Link>
-                    <p>No Account?<Link to="/signup" className="linking">Signup</Link></p>
+                    <p>No Account?<Link to="/signup" className="linking" style={{ textDecoration: 'none' }}>Signup</Link></p>
                 </form>
             </div>
         </div>
