@@ -11,12 +11,6 @@ export default function Home() {
   const history = useHistory();
   useEffect(() => {
     localStorage.setItem("isLoggedIn",false);
-    if(!localStorage.getItem("isLoggedIn")){
-        history.push("/");
-}
-    else if (localStorage.getItem("userType")==="admin"){
-       history.push("/admin");
-    }
 }, [])
     return (
         <div>

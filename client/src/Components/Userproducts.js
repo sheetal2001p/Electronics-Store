@@ -56,27 +56,11 @@ export default function Userproducts() {
             const res = await axios.post(`http://localhost:4000/addtowishlist?product=${productId}`, {}, { headers: { "Authorization": `Bearer ${token}` } });
             if (res.error) {
                 // setLoader(false)
-                toast.error('🦄 Error! try again', {
-                    position: "top-left",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                toast.error('🦄 Error! try again');
             }
             else {
                 // setLoader(false)
-                toast.success('Added to Wishlist', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                toast.success('Added to Wishlist');
             }
         }
         catch (e) {

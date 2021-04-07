@@ -9,8 +9,22 @@ import slogo from "../images/S-logo.png"
 function Adminproducts() {
     const [products, setProducts] = useState([])
     const [userId, setUserId] = useState("");
+
+    const[image,setImage] = useState("");
+    const[loading,setLoading] = useState(false);
+
     const history = useHistory();
 
+    const uploadImage = async(e)=>{
+       const files =e.target.files;
+       const data = new FormData();
+       data.append('file',files[0])
+       data.append('upload_preset','storeimages')
+       setLoading(true);
+       const res =await axios.post("https://api.cloudinary.com/v1_1/dsfynhita/image/upload",data);
+       const file = res.data.secure_url;
+       return file;
+    }
     const [formData, setFormData] = useState({
         name: "",
         productId: "",
@@ -18,6 +32,7 @@ function Adminproducts() {
         model: "",
         qty: "",
         type: "",
+        image:"",
     });
 
     const changeformData = (e) => {
@@ -49,7 +64,7 @@ function Adminproducts() {
 
     const addproduct = async () => {
         try {
-            const res = await axios.post("http://localhost:4000/addProducts", formData);
+            const res = await axios.post("http://localhost:4000/addProduct", formData);
             console.log(res);
             fetchProducts();
             toast.success('🦄 Product added Successfully!', {
@@ -87,6 +102,7 @@ function Adminproducts() {
             ["model"]: item.model,
             ["qty"]: item.qty,
             ["type"]: item.type,
+        
         });
         setUserId(item._id);
     }
@@ -102,6 +118,7 @@ function Adminproducts() {
                 ["model"]: "",
                 ["qty"]: "",
                 ["type"]: "",
+
             });
         }
         catch (e) {
@@ -156,15 +173,14 @@ function Adminproducts() {
                   Model : <input type="text" placeholder="Model" name="model" onChange={changeformData} className="products-form-input" value={formData.model} />
                   Qty : <input type="text" placeholder="Qty" name="qty" onChange={changeformData} className="products-form-input" value={formData.qty} />
                   Type : <input type="text" placeholder="type" name="type" onChange={changeformData} className="products-form-input" value={formData.type} />
-                    {/* <label for="type">Choose a type:</label>
-                    <select id="type" name="type">
-                        <option value="featured">Featured</option>
-                        <option value="laptops and computers">Laptops and Computers</option>
-                        <option value="home appliances">Home Appliances</option>
-                        <option value="mobile and tablets">Mobile and Tablets</option>
-                    </select> */}
+                  Product Image : <input type="file" placeholder="Image URL" name="image" onChange={async(e)=>{
+                        const url = await uploadImage(e);
+                        setFormData({...formData,["image"]:url});
+                        console.log("url:",url)
+                    }} className="products-form-input" />
+                   
                     < Link className="add-product-btn" onClick={addproduct} style={{ textDecoration: "none" }}>ADD</Link >
-                    < Link className="add-product-btn update-btn" onClick={updateProduct} style={{ textDecoration: "none" }}>UPDATE</Link >
+                    < Link className="add-product-btn update-btn" onClick={()=>updateProduct} style={{ textDecoration: "none" }}>UPDATE</Link >
                 </form>
             </div>
         </div>

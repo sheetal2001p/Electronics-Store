@@ -2,7 +2,7 @@ const Product = require("../models/products.model");
 
 const addproducts = async (req, res) => {
     // console.log("RequestS??",req.body);
-    const{name,price,model,qty,type} = req.body;
+    const{name,price,model,qty,type,image} = req.body;
     try{
         const isExist = await Product.findOne({name});
         // console.log(isExist);
@@ -14,7 +14,7 @@ const addproducts = async (req, res) => {
 
         res.status(201).json({product});
     }
-    catch(error){
+    catch(error){ 
         return res.status(500).json({error:"Something went wrong!"});
     }
 

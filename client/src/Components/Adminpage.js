@@ -1,20 +1,22 @@
 import React from 'react'
 import slogo from "../images/S-logo.png"
-import { Link ,useHistory} from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { toast } from "react-toastify"
+
 
 function Adminpage() {
     const [orders, setOrders] = useState([])
     const history = useHistory();
     useEffect(() => {
         fetchOrders();
-        if(!localStorage.getItem("isLoggedIn")){
-            history.push("/login");
+        if (localStorage.getItem("isLoggedIn")&&localStorage.getItem("userType") === "user") {
+            history.push("/userpage");
 
         }
-        else if (localStorage.getItem("userType")==="user"){
-           history.push("/userpage");
+        else if (!localStorage.getItem("isLoggedIn")) {
+            history.push("/");
         }
     }, [])
 
@@ -36,8 +38,12 @@ function Adminpage() {
         catch (e) {
             console.log("Error:", e);
         }
-
     }
+    const logout = () => {
+        localStorage.setItem("isLoggedIn", false);
+        history.push("/");
+        toast.success('Logout Successfully!');
+      }
     return (
         <div>
             <header>
@@ -46,8 +52,9 @@ function Adminpage() {
                         <img src={slogo} alt="" />
                     </div>
                     <h1>Admin Page</h1>
-                    <div>
+                    <div class="right">
                         <Link to="/addproducts" id="admin-products" style={{ textDecoration: 'none' }}>See Products</Link>
+                        <Link id="logout" className="btn" onClick={logout}>Logout</Link>
                     </div>
 
                 </div>
@@ -73,7 +80,7 @@ function Adminpage() {
                                         <td>{order.owner._id}</td>
                                         <td>{order.createdAt}</td>
                                         <td><input type="checkbox" /></td>
-                                        <td><button onClick={()=>deleteItem(order._id)}>X</button></td>
+                                        <td><button onClick={() => deleteItem(order._id)}>X</button></td>
                                     </tr>
                                 )
                             })
