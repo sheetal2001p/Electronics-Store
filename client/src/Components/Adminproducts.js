@@ -67,15 +67,18 @@ function Adminproducts() {
             const res = await axios.post("http://localhost:4000/addProduct", formData);
             console.log(res);
             fetchProducts();
-            toast.success('🦄 Product added Successfully!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+            setFormData({
+                ...formData,
+                ["name"]: "",
+                ["productId"]: "",
+                ["price"]: "",
+                ["model"]: "",
+                ["qty"]: "",
+                ["type"]: "",
+                ["image"]:"",
+
             });
+            toast.success(' Product added Successfully!');
         }
         catch (e) {
             console.log("Error:", e);
@@ -102,11 +105,12 @@ function Adminproducts() {
             ["model"]: item.model,
             ["qty"]: item.qty,
             ["type"]: item.type,
+            ["image"]:item.image,
         
         });
         setUserId(item._id);
     }
-    const updateProduct = async () => {
+    const updateProduct =  async() => {
         try {
             const res = await axios.put(`http://localhost:4000/updateProduct/${userId}`, formData);
             fetchProducts();
@@ -118,6 +122,7 @@ function Adminproducts() {
                 ["model"]: "",
                 ["qty"]: "",
                 ["type"]: "",
+                ["image"]:"",
 
             });
         }
@@ -180,7 +185,7 @@ function Adminproducts() {
                     }} className="products-form-input" />
                    
                     < Link className="add-product-btn" onClick={addproduct} style={{ textDecoration: "none" }}>ADD</Link >
-                    < Link className="add-product-btn update-btn" onClick={()=>updateProduct} style={{ textDecoration: "none" }}>UPDATE</Link >
+                    < Link className="add-product-btn update-btn" onClick={()=>updateProduct()} style={{ textDecoration: "none" }}>UPDATE</Link >
                 </form>
             </div>
         </div>
